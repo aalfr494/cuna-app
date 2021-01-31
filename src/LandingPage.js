@@ -59,44 +59,75 @@ class LandingPage extends React.Component {
         <br />
         <br />
           <h4>Loan Application Info</h4>
-            <form
-              onSubmit={this.onSubmit}>
-              <label>Auto Purchase Price</label>
-              <input
-                type="number"
-                value={this.state.autoPurchasePrice}
-                onChange={this.onPurchasePriceChange}
-               />
+              <form
+                onSubmit={this.onSubmit}
+              >
+                <div
+                  className="form-group"
+                >
+                  <label>Auto Purchase Price</label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    value={this.state.autoPurchasePrice}
+                    onChange={this.onPurchasePriceChange}
+                  />
+                </div>
+                <br />
+                <div
+                  className="form-group"
+                >
+                  <label>Automobile Make</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    value={this.state.autoMake}
+                    onChange={this.onAutoMakeChange}
+                  />
+                  </div>
+                <br />
+                <div
+                  className="form-group"
+                >
+                  <label>Automobile Model</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    value={this.state.autoModel}
+                    onChange={this.onAutoModelChange}
+                  />
+                </div>
+                <br />
+                <div
+                  className="form-group"
+                >
+                  <label>Estimated Annual Income</label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    value={this.state.estimatedIncome}
+                    onChange={this.onIncomeChange}
+                  />
+                </div>
+                <br />
+                <div
+                  className="form-group"
+                >
+                <label>Estimated Credit Score</label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    value={this.state.creditScore}
+                    onChange={this.onCreditChange}
+                  />
+              </div>
               <br />
-              <label>Automobile Make</label>
-              <input
-                type="text"
-                value={this.state.autoMake}
-                onChange={this.onAutoMakeChange}
-               />
-              <br />
-              <label>Automobile Model</label>
-              <input
-                type="text"
-                value={this.state.autoModel}
-                onChange={this.onAutoModelChange}
-               />
-              <br />
-              <label>Estimated Annual Income</label>
-              <input
-                type="number"
-                value={this.state.estimatedIncome}
-                onChange={this.onIncomeChange}
-               />
-              <br />
-              <label>Estimated Credit Score</label>
-              <input
-                type="number"
-                value={this.state.creditScore}
-                onChange={this.onCreditChange}
-               />
-              <br />
-              <button type="submit">Submit</button>
+              <button
+                type="submit"
+                className="btn btn-primary"
+              >
+              Submit
+            </button>
             </form>
       </div>
 
