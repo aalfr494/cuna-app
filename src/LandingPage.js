@@ -12,12 +12,20 @@ class LandingPage extends React.Component {
       autoMake: "",
       autoModel: "",
       estimatedIncome: 0,
-      creditScore: 0
-    }
+      creditScore: 0,
+      errors: {
+        purchasePriceError: '',
+        makeError: '',
+        modelError: '',
+        incomeError: '',
+        creditScoreError: '',
+      }
+    };
   }
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.purchasePriceValidation();
     console.log("Submit button was pressed");
   }
 
@@ -25,6 +33,25 @@ class LandingPage extends React.Component {
     console.log("New value", e.target.value);
     this.setState({ autoPurchasePrice: e.target.value })
 
+  }
+
+  onPurchasePriceBlur = (e) => {
+    if (e.target.value < 1 && e.target.value.length > 0) {
+    let errors = this.state.errors;
+      this.setState({ errors: {...this.state.errors, purchasePriceError: "You must put in a number greater than zero" } });
+      console.log("errors", errors);
+    }
+    else if (!e.target.value.length) {
+      this.setState({ errors: {...this.state.errors, purchasePriceError: "Field cannot be blank" } });
+    }
+  }
+
+  purchasePriceValidation = () => {
+    if (this.state.autoPurchasePrice < 1) {
+      let errors = this.state.errors;
+      this.setState({ errors: {...this.state.errors, purchasePriceError: "You must put in a number greater than zero" } });
+
+    }
   }
 
   onAutoMakeChange = (e) => {
@@ -71,7 +98,9 @@ class LandingPage extends React.Component {
                     type="number"
                     value={this.state.autoPurchasePrice}
                     onChange={this.onPurchasePriceChange}
+                    onBlur={this.onPurchasePriceBlur}
                   />
+                  {this.state.errors.purchasePriceError && <p className="text-danger">{this.state.errors.purchasePriceError}</p>}
                 </div>
                 <br />
                 <div
