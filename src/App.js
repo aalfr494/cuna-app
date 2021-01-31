@@ -1,7 +1,9 @@
-import logo from './logo.svg';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LandingPage from './LandingPage';
+import DisqualificationPage from './DisqualificationPage';
+import NewAccountPage from './NewAccount';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
