@@ -11,8 +11,9 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Route path="/" exact component={LandingPage} />
         <Route path="/newaccount" component={NewAccountPage} />
+        <Route path="/disqualified" component={DisqualificationPage} />
+        <Route path="/" exact component={LandingPage} />
       </BrowserRouter>
     </div>
   );

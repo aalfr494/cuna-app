@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -17,8 +19,11 @@ class LandingPage extends React.Component {
       modelError: '',
       incomeError: '',
       creditScoreError: '',
+      isQualified: true
     };
   }
+
+
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +33,18 @@ class LandingPage extends React.Component {
     this.incomeValidation();
     this.creditValidation();
     console.log("Submit button was pressed");
+
+
+    if (!this.state.purchasePriceError && !this.state.makeError && !this.state.modelError && !this.state.incomeError && !this.state.creditScoreError && this.state.isQualified) {
+      //this.setState({ isQualified: true });
+      console.log("You are qualified", this.state.isQualified);
+      console.log("credit score is", this.state.creditScore);
+      console.log("history", this.props.history);
+      this.props.history.push('/newaccount');
+    }
+    else  {
+      this.props.history.push('/disqualified');
+    }
   }
 
   onPurchasePriceChange = (e) => {
@@ -146,7 +163,14 @@ class LandingPage extends React.Component {
       this.setState({ creditScoreError: "Credit score must be between 300 and 850" });
       console.log("purchase price error");
     }
+
+    else if (this.state.creditScore < 600) {
+      this.setState({ isQualified: this.state.isQualified = !this.state.isQualified });
+      console.log("low credit score here", this.state.isQualified);
+    }
   }
+
+
 
 
   render() {
@@ -249,4 +273,4 @@ class LandingPage extends React.Component {
     );
   }
 }
-export default LandingPage;
+export default withRouter (LandingPage);
