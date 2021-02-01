@@ -5,14 +5,15 @@ import LandingPage from './LandingPage';
 import DisqualificationPage from './DisqualificationPage';
 import NewAccountPage from './NewAccount';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>CUNA Auto Loan</h1>
-        <LandingPage />
-      </header>
+      <BrowserRouter>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/newaccount" component={NewAccountPage} />
+      </BrowserRouter>
     </div>
   );
 }
