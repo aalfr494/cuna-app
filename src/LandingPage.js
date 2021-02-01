@@ -32,6 +32,7 @@ class LandingPage extends React.Component {
     this.autoModelValidation();
     this.incomeValidation();
     this.creditValidation();
+    this.validateAbilityToPay();
     console.log("Submit button was pressed");
 
 
@@ -166,7 +167,23 @@ class LandingPage extends React.Component {
 
     else if (this.state.creditScore < 600) {
       this.setState({ isQualified: this.state.isQualified = !this.state.isQualified });
+
+      //without the above very specific syntax boolean value doesnt update
       console.log("low credit score here", this.state.isQualified);
+    }
+  }
+
+  validateAbilityToPay = () => {
+    const moneyComingIn = this.state.estimatedIncome;
+    const vehicleCost = this.state.autoPurchasePrice;
+    const fifthOfIncome = (moneyComingIn * .2);
+    if (vehicleCost > fifthOfIncome ) {
+      console.log("your car is more than a fifth of your income");
+      this.setState({ isQualified: this.state.isQualified = !this.state.isQualified });
+    }
+
+    else {
+      console.log("You have a reasonable car loan");
     }
   }
 
